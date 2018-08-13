@@ -31,7 +31,8 @@
                       <center>
                         <a href="<?php echo base_url().'c_kalab/editdosen/'.$dosen->id_dosen; ?>" data-toggle="tooltip" data-placement="bottom" title="Edit Dosen"><i class="fa fa-pencil"></i></a>
                         <a onclick="return confirm('Apa anda ini menghapus dosen id=<?php echo $dosen->nama_dosen; ?> ini ?');" href="<?php echo base_url().'c_kalab/hapusdosen/'.$dosen->id_dosen; ?>" data-toggle="tooltip" data-placement="bottom" title="Hapus Dosen"><i class="fa fa-trash-o"></i></a>
-                       <!-- <a onclick="deletedata(<?php echo $dosen->id_dosen ?>)" href="#" data-toggle="tooltip" data-placement="bottom" title="Hapus Dosen"><i class="fa fa-trash-o"></i></a> -->
+                       <!-- <a onclick="deletedata(<?php echo $dosen->id_dosen ?>)" data-target="#delete"  href="#" data-toggle="tooltip" data-placement="bottom" title="Hapus Dosen"><i class="fa fa-trash-o"></i></a> -->
+                       <!--  <button class="btn btn-danger" data-id_dosen="<?php echo $dosen->id_dosen; ?>" data-toggle="modal" data-target="#delete"><i class="fa fa-trash-o"></i></button> -->
                       </center>
                   </td>
                     </tr>
@@ -49,8 +50,43 @@
     </section>
     <!-- /.content -->
   </div>
+<!-- Modal -->
+<div class="modal modal-danger fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Delete Confirmation</h4>
+      </div>
+      <form action="" method="post">
+            
+          <div class="modal-body">
+                <p class="text-center">
+                    Are you sure you want to delete this?
+                </p>
+                <input type="hidden" name="id_dosen" id="id_dosen" value="">
 
-  <script>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">No, Cancel</button>
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+          </div>
+      </form>
+    </div>
+  </div>
+   </div> 
+
+
+<script>
+
+  $(document).ready(function(){
+    $('#delete').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      var id_dosen = button.data('id_dosen')
+      var modal = $(this)
+      modal.find('.modal-body #id_dosen').val(id_dosen);
+      })
+  });
     function deletedata(id)
   {
     swal({

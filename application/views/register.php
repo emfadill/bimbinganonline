@@ -31,32 +31,41 @@
   </div>
 
   <div class="register-box-body">
-    <p class="login-box-msg">Daftar Akun</p>
+    <p class="login-box-msg">Daftar Akun<br>
+    <?php if (isset($pesan)) {echo $pesan;} ?>
+    <?php if (isset($errorMsg)) {echo $errorMsg;} ?>
+    </p>
 
-    <form action="<?php echo base_url('register/register');?>" method="post">
+    <form action="<?php echo base_url('c_front/RegisterUser');?>" method="post">
       <?php echo $this->session->flashdata('msg'); ?>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="username" placeholder="Username">
+        <input type="text" class="form-control" name="username" placeholder="Username" required>
         <span class="glyphicon glyphicon-user form-control-feedback"><?php echo form_error('username');?></span>
       </div>
 
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="npm" placeholder="NPM">
-        <span class="glyphicon glyphicon-user form-control-feedback"><?php echo form_error('npm');?></span>
-      </div>
-
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="nama" placeholder="Nama">
+        <input type="text" class="form-control" name="nama_user" placeholder="Nama" required>
         <span class="glyphicon glyphicon-user form-control-feedback"><?php echo form_error('nama');?></span>
       </div>
 
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" name="no_hp" placeholder="No Handphone">
-        <span class="glyphicon glyphicon-phone form-control-feedback"><?php echo form_error('no_hp');?></span>
+        <input type="text" class="form-control" name="npm" placeholder="NPM" required>
+        <span class="glyphicon glyphicon-user form-control-feedback"><?php echo form_error('npm');?></span>
       </div>
 
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="password" placeholder="Password">
+        <select class="form-control" name="konsentrasi" style="width: 100%;">
+                          <option value="Applied Database">Applied Database</option>
+                          <option value="Applied Networking">Applied Networking</option>
+                          <option value="Information Technology">Information Technology</option>
+                          <option value="Game dan Multimedia">Game dan Multimedia</option>
+                          <option value="Interfacing System">Interfacing System</option>
+          </select>
+        <span class="glyphicon glyphicon-th-list form-control-feedback"><?php echo form_error('konsentrasi');?></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"><?php echo form_error('password');?></span>
       </div>
 
@@ -68,6 +77,10 @@
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="email" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"><?php echo form_error('email');?></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="hidden" class="form-control" name="level" value="Mhs">
       </div>
 
       <div class="row">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06 Agu 2018 pada 14.19
+-- Generation Time: 13 Agu 2018 pada 09.27
 -- Versi Server: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -358,6 +358,7 @@ CREATE TABLE `t_user` (
   `nama_user` varchar(60) DEFAULT NULL,
   `npm` varchar(50) NOT NULL,
   `konsentrasi` varchar(30) DEFAULT NULL,
+  `email` varchar(50) NOT NULL,
   `jenis_bimbingan` enum('Tugas Akhir','Kerja Praktek','Both') DEFAULT NULL,
   `nid` varchar(30) DEFAULT NULL,
   `level` enum('Admin','Dosen','Prodi','Kalab','Mhs') DEFAULT NULL,
@@ -368,18 +369,19 @@ CREATE TABLE `t_user` (
 -- Dumping data untuk tabel `t_user`
 --
 
-INSERT INTO `t_user` (`id`, `username`, `password`, `nama_user`, `npm`, `konsentrasi`, `jenis_bimbingan`, `nid`, `level`, `foto`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Pak Dhani', '', '', NULL, '', 'Admin', 'mata1.jpg'),
-(2, 'prodi', '32b404761d910d277789cd91076d1459', 'Prodi Coba', '', '', NULL, '', 'Prodi', 'SpongeBob_(5).png'),
-(3, 'dosen1', 'f499263a253447dd5cb68dafb9f13235', 'Dosen 1', '', '', 'Kerja Praktek', '01011021001', 'Dosen', NULL),
-(4, 'dosen2', 'ac41c4e0e6ef7ac51f0c8f3895f82ce5', 'Dosen 2', '', 'Applied Database', 'Tugas Akhir', '01011021002', 'Dosen', 'iyus2.jpg'),
-(5, 'dosen3', '1192feff42fadff1d7e0aa1210fed1e3', 'Dosen 3', '', '', 'Both', '01011021003', 'Dosen', 'Digimon-Story-Cyber-Sleuth-Hackers-Memory_2017_06-22-17_015_(2).jpg'),
-(6, 'prodi2', '5575ef8fb51d0dd67ea3d77a737fb5b9', 'Bu Ka. Prodi', '', '', '', '', 'Prodi', 'cshm_(1).png'),
-(7, 'dosen11', '2cf10dca06a03b19936c504fa9372e6b', 'Dosen 11', '', 'Interfacing System', 'Tugas Akhir', '01011021011', 'Dosen', 'nk.jpg'),
-(9, 'prodi3', 'd41d8cd98f00b204e9800998ecf8427e', 'prodi3', '', '', '', '', 'Prodi', ''),
-(10, 'dosen73', '5335d74cde4117b27579207ab3f8e936', 'Dosen 73', '', 'Game dan Multimedia', 'Both', '01011021073', 'Dosen', 'Melody_Saiki_Kusuo_no_Psi-nan_-_22_480_C913EA1E_2_mkv_snapshot_15_39_2016_12_20_19_28_03_2.jpg'),
-(11, 'fadil', 'd8578edf8458ce06fbc5bb76a58c5ca4', 'fadil', '0615101038', 'applied database', NULL, NULL, 'Mhs', 'Desain_Topi.JPG'),
-(12, 'kalab', '966676a567d83cf0fbeb8cd5c280a589', 'kalab', '', 'applied database', 'Both', '88845452257', 'Kalab', 'iyus1.jpg');
+INSERT INTO `t_user` (`id`, `username`, `password`, `nama_user`, `npm`, `konsentrasi`, `email`, `jenis_bimbingan`, `nid`, `level`, `foto`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Pak Dhani', '', '', '', NULL, '', 'Admin', 'mata1.jpg'),
+(2, 'prodi', '32b404761d910d277789cd91076d1459', 'Prodi Coba', '', '', '', NULL, '', 'Prodi', 'SpongeBob_(5).png'),
+(3, 'dosen1', 'f499263a253447dd5cb68dafb9f13235', 'Dosen 1', '', '', '', 'Kerja Praktek', '01011021001', 'Dosen', NULL),
+(4, 'dosen2', 'ac41c4e0e6ef7ac51f0c8f3895f82ce5', 'Dosen 2', '', 'Applied Database', '', 'Tugas Akhir', '01011021002', 'Dosen', 'iyus2.jpg'),
+(5, 'dosen3', '1192feff42fadff1d7e0aa1210fed1e3', 'Dosen 3', '', '', '', 'Both', '01011021003', 'Dosen', 'Digimon-Story-Cyber-Sleuth-Hackers-Memory_2017_06-22-17_015_(2).jpg'),
+(6, 'prodi2', '5575ef8fb51d0dd67ea3d77a737fb5b9', 'Bu Ka. Prodi', '', '', '', '', '', 'Prodi', 'cshm_(1).png'),
+(7, 'dosen11', '2cf10dca06a03b19936c504fa9372e6b', 'Dosen 11', '', 'Interfacing System', '', 'Tugas Akhir', '01011021011', 'Dosen', 'nk.jpg'),
+(9, 'prodi3', 'd41d8cd98f00b204e9800998ecf8427e', 'prodi3', '', '', '', '', '', 'Prodi', ''),
+(10, 'dosen73', '5335d74cde4117b27579207ab3f8e936', 'Dosen 73', '', 'Game dan Multimedia', '', 'Both', '01011021073', 'Dosen', 'Melody_Saiki_Kusuo_no_Psi-nan_-_22_480_C913EA1E_2_mkv_snapshot_15_39_2016_12_20_19_28_03_2.jpg'),
+(11, 'fadil', 'd8578edf8458ce06fbc5bb76a58c5ca4', 'fadil', '0615101038', 'applied database', '', NULL, NULL, 'Mhs', 'Desain_Topi.JPG'),
+(12, 'kalab', '966676a567d83cf0fbeb8cd5c280a589', 'kalab', '', 'applied database', '', 'Both', '88845452257', 'Kalab', 'iyus1.jpg'),
+(14, 'ridwan', '827ccb0eea8a706c4c34a16891f84e7b', 'M Ridwan', '0615101022', 'Information Technology', 'rizkyadit175@gmail.com', NULL, NULL, 'Mhs', NULL);
 
 --
 -- Indexes for dumped tables
@@ -495,7 +497,7 @@ ALTER TABLE `t_pengajuanta`
 -- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

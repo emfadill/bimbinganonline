@@ -51,6 +51,25 @@ class M_Model extends CI_Model
 		$this->db->delete($tabel);
 	}
 
+	function checkDuplicate($npm)
+	{
+		$this->db->select('npm');
+		$this->db->from('t_user');
+		$this->db->like('npm', $npm);
+		return $this->db->count_all_results();
+	}
+	
+	function insertUser($data)
+	{
+		if($this->db->insert('t_user', $data))
+		{
+			return  $this->db->insert_id();
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	function getdosen($where){
 		$this->db->where('jenis_bimbingan',$where);
