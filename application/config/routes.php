@@ -57,6 +57,7 @@ $route['proseslogin'] = 'c_front/proses_login';
 $route['formta'] = 'c_front/formta';
 $route['formkp'] = 'c_front/formkp';
 $route['cekform'] = 'c_front/cekform';
+$route['registdosen'] = 'c_front/registdosen';
 $route['prodi'] = 'c_prodi';
 $route['prodi/tambahakun'] = 'c_prodi/tambahakun';
 $route['prodi/tambahdosen'] = 'c_prodi/tambahdosen';

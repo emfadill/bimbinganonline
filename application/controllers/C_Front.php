@@ -54,6 +54,15 @@ class C_Front extends CI_Controller
 		$this->load->view('v_mfooter');	
 	}
 
+	function registdosen(){
+		$data = array(
+			'title' => 'Daftar Bimbingan Online' 
+			);
+		$this->load->view('v_mheader.php',$data);
+		$this->load->view('registerdosen');
+		$this->load->view('v_mfooter');	
+	}
+
 	public function proses_login(){
 		$user = $this->input->post('username');
 		$pass = $this->input->post('password');
@@ -162,6 +171,69 @@ class C_Front extends CI_Controller
 			else
 			{
 				$data['errorMsg'] = 'NPM already exists';
+				$this->load->view('register',$data);
+			}
+		}
+	}
+
+	public function RegisterDosen()
+	{
+		
+
+		$this->form_validation->set_rules('username', 'User Name', 'required');
+		$this->form_validation->set_rules('nama_user', 'Nama User', 'required');
+		$this->form_validation->set_rules('nid', 'NID', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('confirmpswd', 'Password Confirmation', 'required|matches[password]');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('level', 'Level', 'required');
+		
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			$data_gagal['pesan'] = "Pendaftaran Gagal";
+			$this->load->view('register',$data_gagal);
+		}
+		else
+		{
+			$username 		= $this->security->xss_clean($this->input->post('username'));
+			$nama_user 		= $this->security->xss_clean($this->input->post('nama_user'));
+			$nid 			= $this->security->xss_clean($this->input->post('nid'));
+			$password 		= $this->security->xss_clean($this->input->post('password'));
+			$email 			= $this->security->xss_clean($this->input->post('email'));
+			$level 			= $this->security->xss_clean($this->input->post('level'));
+			
+			
+			$hashPassword = hash('md5', $password);
+ 
+			
+			$insertData = array('username'=>$username,
+								'password'=>$hashPassword,
+								'nama_user'=>$nama_user,
+								'email'=>$email,
+								'nid'=>$nid,
+								'level'=>$level);
+								
+			
+			$checkDuplicated = $this->m_model->checkDuplicated($nid);
+			
+			if($checkDuplicated == 0)
+			{
+				$insertUser = $this->m_model->insertUser($insertData);
+			
+				if($insertUser)
+				{
+					redirect('C_Front');
+				}
+				else
+				{
+					$data['errorMsg'] = 'Unable to save user. Please try again';
+					$this->load->view('register',$data);
+				}
+			}
+			else
+			{
+				$data['errorMsg'] = 'NID already exists';
 				$this->load->view('register',$data);
 			}
 		}

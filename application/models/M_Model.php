@@ -58,6 +58,14 @@ class M_Model extends CI_Model
 		$this->db->like('npm', $npm);
 		return $this->db->count_all_results();
 	}
+
+	function checkDuplicated($nid)
+	{
+		$this->db->select('nid');
+		$this->db->from('t_user');
+		$this->db->like('nid', $nid);
+		return $this->db->count_all_results();
+	}
 	
 	function insertUser($data)
 	{
