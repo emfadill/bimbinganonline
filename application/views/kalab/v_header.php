@@ -112,8 +112,7 @@
             </span>
           </a>
         </li>
-            <li class="<?php if (isset($active_ta)) {echo $active_ta;} ?>"><a href="<?php echo base_url(); ?>kalab/listta"><i class="fa fa-book"></i> <span>List Tugas Akhir</span></a></li>
-        
+           
         <li class="<?php if (isset($active_ddosen)) {echo $active_ddosen;} ?>"><a href="<?php echo base_url(); ?>kalab/datadosen"><i class="fa fa-users"></i> <span>Data Dosen</span></a></li>
         <li class="<?php if (isset($active_setting)) {echo $active_setting;} ?>"><a href="<?php echo base_url(); ?>kalab/setting"><i class="fa fa-wrench"></i> <span>Setting</span></a></li>
       </ul>

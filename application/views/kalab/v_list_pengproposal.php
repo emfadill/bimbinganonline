@@ -148,11 +148,11 @@
 		                  	<center>
 		                  		<?php if ($ta_dt->status == "Tunggu") { ?>
 		                  		
-		                  			<a href="<?php echo base_url().'c_kalab/reviewta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
+		                  			<a href="<?php echo base_url().'c_kalab/reviewta/'.$ta_dt->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
 		                  			</a> | 
-		                  			<a href="<?php echo base_url().'c_kalab/aformta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-share"></i></a>
+		                  			<a href="<?php echo base_url().'c_kalab/aformta/'.$ta_dt->id; ?>"> <i class="glyphicon glyphicon-share"></i></a>
 		                  		<?php } else{ ?>
-		                  			<a href="<?php echo base_url().'c_kalab/viewpta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
+		                  			<a href="<?php echo base_url().'c_kalab/viewpta/'.$ta_dt->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
 		                  		<?php } ?>
 		                  	</center>
 		                  </td>
