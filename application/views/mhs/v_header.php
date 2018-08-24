@@ -113,7 +113,7 @@
           </a>
           
         </li>
-            <li class="<?php if (isset($active_ta)) {echo $active_ta;} ?>"><a href="<?php echo base_url(); ?>mhs/listta"><i class="fa fa-book"></i> <span>List Tugas Akhir</span></a></li>
+          
         <li class="<?php if (isset($active_setting)) {echo $active_setting;} ?>"><a href="<?php echo base_url(); ?>mhs/setting"><i class="fa fa-wrench"></i> <span>Setting</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->

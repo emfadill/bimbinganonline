@@ -14,6 +14,42 @@
 
 		<div class="row">
 	        <div class="col-xs-12">
+	        	<div class="box">
+	            <!-- /.box-header -->
+	            <div class="box-body">
+	            	<div class="col-md-12">
+	            		<table class="table">
+	            			<?php echo form_open('c_kalab/exportxlsptasort'); ?>
+		            		<tr>
+		            			<td class="pull-right"><input type="submit" class="btn btn-info pull-right" value="Ambil Data"></td>
+		            			
+		            			<td class="pull-right">
+									<div class="form-group">
+					                  <select name="tahun_akademik_diterima" class="form-control">
+					                  	
+					                  	<?php foreach ($tahun as $t): ?>
+					                  	<option><?php echo $t->thn; ?></option>	
+					                  	<?php endforeach ?>
+					                    
+					                  </select>
+					                </div>
+		            			</td>
+		            			<td class="pull-right">
+		            				<div class="form-group">
+					                  <select name="semester_diterima" class="form-control">
+					                    <option>Ganjil</option>
+					                    <option>Genap</option>
+					                  </select>
+					                </div>
+		            			</td>
+		            			<td class="pull-left"><h4 class="box-title">Ambil Data Proposal diterima Excel Berdasarkan Tahun Akademik</h4></td>
+		            		</tr>
+		            		<?php echo form_close(); ?>
+		            	</table>
+	            	</div>
+	            </div>
+	            <!-- /.box-body -->
+	          </div>    
 	        	 <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
@@ -102,11 +138,11 @@
 		                  	<center>
 		                  		<?php if ($ta_r->status == "Tunggu") { ?>
 		                  		
-		                  			<a href="<?php echo base_url().'c_kalab/reviewta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
+		                  			<a href="<?php echo base_url().'c_kalab/reviewta/'.$ta_r->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
 		                  			</a> | 
-		                  			<a href="<?php echo base_url().'c_kalab/aformta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-share"></i></a>
+		                  			<a href="<?php echo base_url().'c_kalab/aformta/'.$ta_r->id; ?>"> <i class="glyphicon glyphicon-share"></i></a>
 		                  		<?php } else{ ?>
-		                  			<a href="<?php echo base_url().'c_kalab/viewpta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
+		                  			<a href="<?php echo base_url().'c_kalab/viewpta/'.$ta_r->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
 		                  		<?php } ?>
 		                  	</center>
 		                  </td>
@@ -129,6 +165,8 @@
 	                  <th>Nama</th>
 	                  <th>Konsentrasi</th>
 	                  <th>Topik</th>
+	                  <th>Tahun Akademik</th>
+	                  <th>Semester</th>
 	                  <th>Status</th>
 	                  <th>Reviewer</th>
 	                  <th>Action</th>
@@ -142,6 +180,8 @@
 		                  <td><?php echo $ta_dt->nama_mahasiswa; ?></td>
 		                  <td><?php echo $ta_dt->konsentrasi; ?></td>
 		                  <td><?php echo $ta_dt->topik_ta; ?></td>
+		                  <td><?php echo $ta_dt->tahun_akademik_diterima; ?></td>
+		                  <td><?php echo $ta_dt->semester_diterima; ?></td>
 		                  <td><span class="label label-success"><?php echo $ta_dt->status; ?></span></td>
 		                  <td><?php echo $ta_dt->dosen; ?></td>
 		                  <td>

@@ -110,6 +110,7 @@ class C_Kalab extends CI_Controller
 		$data1['datata'] = $this->m_model->ambil_where($where_t,'t_pengajuanproposal')->result();
 		$data1['datata_r'] = $this->m_model->ambil_where($where_r,'t_pengajuanproposal')->result();
 		$data1['datata_dt'] = $this->m_model->ambil_where($where_dt,'t_pengajuanproposal')->result();
+		$data1['tahun'] = $this->m_model->ambil_thn_akademik()->result();
 		$this->load->view('kalab/v_header.php',$data);
 		$this->load->view('kalab/v_list_pengproposal',$data1);
 		$this->load->view('kalab/v_footer');
@@ -183,6 +184,7 @@ class C_Kalab extends CI_Controller
 		$metodologi_penelitian = $this->input->post('metodologi_penelitian');
 		$r_metodologi = $this->input->post('r_metodologi');
 		$r_landasan = $this->input->post('r_landasan');
+
 		
 
 		$dsn = explode("|", $dosen);
@@ -232,6 +234,8 @@ class C_Kalab extends CI_Controller
 		$r_batasan = $this->input->post('r_batasan');
 		$metodologi_penelitian = $this->input->post('metodologi_penelitian');
 		$r_metodologi = $this->input->post('r_metodologi');
+		$tahun_akademik_diterima = $this->input->post('tahun_akademik_diterima');
+		$semester_diterima = $this->input->post('semester_diterima');
 		
 
 		$dsn = explode("|", $dosen);
@@ -255,10 +259,14 @@ class C_Kalab extends CI_Controller
 				'r_batasan' => $r_batasan,
 				'metodologi_penelitian' => $metodologi_penelitian,
 				'r_metodologi' => $r_metodologi,
+				'tahun_akademik_diterima' => $tahun_akademik_diterima,
+				'semester_diterima' => $semester_diterima,
 				'nid' => $nid,
 				'dosen' => $dosen,
 			);
-			$data2 = array('status' => 'Diterima' );
+			$data2 = array('status' => 'Diterima',
+			'tahun_akademik_diterima' => $tahun_akademik_diterima,
+				'semester_diterima' => $semester_diterima );
 			$this->m_model->update($where,$data2,'t_pengajuanproposal');
 
 			redirect('kalab/listpengajuanproposal');
@@ -772,6 +780,216 @@ class C_Kalab extends CI_Controller
 
 		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
 		$write->save('php://output');
+
+	}
+
+	function exportxlsptasort(){
+		
+
+		include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+		
+		// Panggil class PHPExcel nya
+		$excel = new PHPExcel();
+
+		// Settingan awal fil excel
+		$excel->getProperties()->setCreator('Kalab IF UTama')
+							   ->setLastModifiedBy('Kalab IF UTama')
+							   ->setTitle("Data Proposal Tugas Akhir")
+							   ->setSubject("Kalab")
+							   ->setDescription("Daftar Proposal Tugas Akhir Prodi IF Utama")
+							   ->setKeywords("Data Proposal Tugas Akhir");
+
+		// Buat sebuah variabel untuk menampung pengaturan style dari header tabel
+		$style_col = array(
+			'font' => array('bold' => true), // Set font nya jadi bold
+			'alignment' => array(
+				'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+			),
+			'borders' => array(
+				'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+				'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+				'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+				'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+			)
+		);
+
+		// Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+		$style_row = array(
+			'alignment' => array(
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+			),
+			'borders' => array(
+				'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+				'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+				'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+				'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+			)
+		);
+
+
+		$excel->setActiveSheetIndex(0)->setCellValue('A1', "No"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('B1', "Nama Mahasiswa"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('C1', "NPM/NIM"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('D1', "Konsentrasi");
+		$excel->setActiveSheetIndex(0)->setCellValue('E1', "Topik Tugas Akhir"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('F1', "Latar Belakang");
+		$excel->setActiveSheetIndex(0)->setCellValue('G1', "Revisi Latar Belakang");
+		$excel->setActiveSheetIndex(0)->setCellValue('H1', "Rumusan Masalah");
+		$excel->setActiveSheetIndex(0)->setCellValue('I1', "Revisi Rumusan Masalah");
+		$excel->setActiveSheetIndex(0)->setCellValue('J1', "Tujuan");
+		$excel->setActiveSheetIndex(0)->setCellValue('K1', "Revisi Tujuan");
+		$excel->setActiveSheetIndex(0)->setCellValue('L1', "Batasan Masalah");
+		$excel->setActiveSheetIndex(0)->setCellValue('M1', "Revisi Batasan Masalah");
+		$excel->setActiveSheetIndex(0)->setCellValue('N1', "Metodologi Penelitian");
+		$excel->setActiveSheetIndex(0)->setCellValue('O1', "Revisi Metodologi Penelitian");
+		$excel->setActiveSheetIndex(0)->setCellValue('P1', "Landasan Teori dan Alur Kerja");
+		$excel->setActiveSheetIndex(0)->setCellValue('Q1', "Revisi Landasan");
+		$excel->setActiveSheetIndex(0)->setCellValue('R1', "Tahun Akademik Diterima");
+		$excel->setActiveSheetIndex(0)->setCellValue('S1', "Semester");
+		$excel->setActiveSheetIndex(0)->setCellValue('T1', "Status"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('U1', "NID Dosen Reviewer"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('V1', "Dosen Reviewer");
+		$excel->setActiveSheetIndex(0)->setCellValue('W1', "No ID");
+
+		$excel->getActiveSheet()->getStyle('A1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('B1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('C1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('D1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('E1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('F1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('G1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('H1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('I1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('J1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('K1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('L1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('M1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('N1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('O1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('P1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('Q1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('R1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('S1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('T1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('U1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('V1')->applyFromArray($style_col);
+		$excel->getActiveSheet()->getStyle('W1')->applyFromArray($style_col);
+
+		$semester_diterima = $this->input->post('semester_diterima');
+		$tahun_akademik_diterima = $this->input->post('tahun_akademik_diterima');
+
+		$where = array(
+			'semester_diterima' => $semester_diterima,
+			'tahun_akademik_diterima' => $tahun_akademik_diterima
+		);
+
+		$data = $this->m_model->ambil_where($where,'t_pengajuanproposal');
+
+		$no = 1;
+		$numrow = 2; // Set baris pertama untuk isi tabel adalah baris ke 2
+		foreach($data->result() as $ta){ // Lakukan looping pada variabel siswa
+
+
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $ta->nama_mahasiswa);
+			$excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $ta->npm);
+			$excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $ta->konsentrasi);
+			$excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $ta->topik_ta);
+			$excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $ta->latar_belakang);
+			$excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, $ta->r_latar);
+			$excel->setActiveSheetIndex(0)->setCellValue('H'.$numrow, $ta->rumusan_masalah);
+			$excel->setActiveSheetIndex(0)->setCellValue('I'.$numrow, $ta->r_rumusan);
+			$excel->setActiveSheetIndex(0)->setCellValue('J'.$numrow, $ta->tujuan);
+			$excel->setActiveSheetIndex(0)->setCellValue('K'.$numrow, $ta->r_tujuan);
+			$excel->setActiveSheetIndex(0)->setCellValue('L'.$numrow, $ta->batasan_masalah);
+			$excel->setActiveSheetIndex(0)->setCellValue('M'.$numrow, $ta->r_batasan);
+			$excel->setActiveSheetIndex(0)->setCellValue('N'.$numrow, $ta->metodologi_penelitian);
+			$excel->setActiveSheetIndex(0)->setCellValue('O'.$numrow, $ta->r_metodologi);
+			$excel->setActiveSheetIndex(0)->setCellValue('P'.$numrow, $ta->Landasan);
+			$excel->setActiveSheetIndex(0)->setCellValue('Q'.$numrow, $ta->r_landasan);
+			$excel->setActiveSheetIndex(0)->setCellValue('R'.$numrow, $ta->tahun_akademik_diterima);
+			$excel->setActiveSheetIndex(0)->setCellValue('S'.$numrow, $ta->semester_diterima);
+			$excel->setActiveSheetIndex(0)->setCellValue('T'.$numrow, $ta->status);
+			$excel->setActiveSheetIndex(0)->setCellValue('U'.$numrow, $ta->nid);
+			$excel->setActiveSheetIndex(0)->setCellValue('V'.$numrow, $ta->dosen);
+			$excel->setActiveSheetIndex(0)->setCellValue('W'.$numrow, $ta->id);
+
+			// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
+			$excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('C'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('I'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('J'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('K'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('L'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('M'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('N'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('O'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('P'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('Q'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('R'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('S'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('T'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('U'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('V'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('W'.$numrow)->applyFromArray($style_row);
+			
+
+			$no++;
+			$numrow++; // Tambah 1 setiap kali looping
+		}
+
+		// Set width kolom
+		$excel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('F')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('G')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('H')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('I')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('J')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('K')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('L')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('M')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('N')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('O')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('P')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('Q')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('R')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('S')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('T')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('U')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('V')->setAutoSize(true); 
+		$excel->getActiveSheet()->getColumnDimension('W')->setAutoSize(true); 
+		
+		
+		// Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
+		$excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+
+		// Set orientasi kertas jadi LANDSCAPE
+		$excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+
+		// Set judul file excel nya
+		$excel->getActiveSheet(0)->setTitle("List Proposal Tugas Akhir");
+		$excel->setActiveSheetIndex(0);
+
+		// Proses file excel
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="List Proposal Tugas Akhir Terbaru sort.xlsx"'); // Set nama file excel nya
+		header('Cache-Control: max-age=0');
+
+		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+		$write->save('php://output');
+
+		redirect('kalab/listpengajuanproposal');
 
 	}
 

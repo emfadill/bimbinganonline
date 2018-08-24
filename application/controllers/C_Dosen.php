@@ -124,6 +124,8 @@ class C_Dosen extends CI_Controller
 		$r_batasan = $this->input->post('r_batasan');
 		$metodologi_penelitian = $this->input->post('metodologi_penelitian');
 		$r_metodologi = $this->input->post('r_metodologi');
+		$tahun_akademik_diterima = $this->input->post('tahun_akademik_diterima');
+		$semester_diterima = $this->input->post('semester_diterima');
 		
 
 		$dsn = explode("|", $dosen);
@@ -150,7 +152,9 @@ class C_Dosen extends CI_Controller
 				'nid' => $nid,
 				'dosen' => $dosen,
 			);
-			$data2 = array('status' => 'Diterima' );
+			$data2 = array('status' => 'Diterima',
+			'tahun_akademik_diterima' => $tahun_akademik_diterima,
+				'semester_diterima' => $semester_diterima );
 			$this->m_model->update($where,$data2,'t_pengajuanproposal');
 
 			redirect('dosen');

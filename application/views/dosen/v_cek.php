@@ -22,6 +22,8 @@
                   <th>Nama</th>
                   <th>Konsentrasi</th>
                   <th>Topik</th>
+                  <th>Tahun Akademik</th>
+                  <th>Semester</th>
                   <th>Status</th>
                   <th>Reviewer</th>
                   <th>Action</th>
@@ -35,6 +37,8 @@
                       <td><?php echo $ta->nama_mahasiswa; ?></td>
                       <td><?php echo $ta->konsentrasi; ?></td>
                       <td><?php echo $ta->topik_ta; ?></td>
+                      <td><?php echo $ta->tahun_akademik_diterima; ?></td>
+                      <td><?php echo $ta->semester_diterima; ?></td>
                       <td><?php if ($ta->status == "Tunggu") { ?>
                             <span class="label label-warning"><?php echo $ta->status; ?>
                           <?php } else if ($ta->status == "Revisi") { ?>

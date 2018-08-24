@@ -104,7 +104,7 @@ class M_Model extends CI_Model
 	}
 
 	function ambil_thn_akademik(){
-		return $this->db->query("SELECT DISTINCT tahun_akademik_lulus AS thn FROM t_datata WHERE NOT tahun_akademik_lulus = '' ORDER BY thn ASC");
+		return $this->db->query("SELECT DISTINCT tahun_akademik_diterima AS thn FROM t_pengajuanproposal WHERE NOT tahun_akademik_diterima = '' ORDER BY thn ASC");
 
 	}
 

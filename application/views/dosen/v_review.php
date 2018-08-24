@@ -84,6 +84,7 @@
                 </table>
 
                 <table class="table">
+                  <tr>
                   <td>Setujui Pengajuan Proposal</td>
                   <td>
                       <div class="form-group">
@@ -101,6 +102,33 @@
                         </div>
                       </div>                    
                   </td>
+                </tr>
+                 <tr>
+                    <td>Semester Akademik</td>
+                    <td>
+                      <select class="form-control" name="semester_diterima" style="width: 100%;">
+                          <option value="">-</option>
+                          <option value="Ganjil" <?php if ($ta->semester_diterima=='Ganjil'){ echo "selected";} ?>>Ganjil</option>
+                          <option value="Genap" <?php if ($ta->semester_diterima=='Genap'){ echo "selected";} ?>>Genap</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tahun Akademik</td>
+                    <td>
+                      <?php $thn = 2012; $cthn = date('Y'); ?>
+                      <select class="form-control select2" name="tahun_akademik_diterima" style="width: 100%;">
+                        <option value="">-</option>
+                        <?php while ($thn<=$cthn) { ?>
+                        <option value="<?php echo ($thn-1).'/'.$thn;?>" <?php if ($ta->tahun_akademik_diterima == ($thn-1).'/'.$thn) { echo "selected"; } ?>><?php echo ($thn-1).'/'.$thn; ?></option>  
+                        <?php $thn=$thn+1; } ?>
+                        <?php for ($i=0; $i < 2 ; $i++) { ?>
+                        <option value="<?php echo ($thn-1).'/'.$thn;?>" <?php if ($ta->tahun_akademik_diterima == ($thn-1).'/'.$thn) { echo "selected"; } ?>><?php echo ($thn-1).'/'.$thn; ?></option>
+                        <?php $thn=$thn+1; } ?>
+
+                      </select>
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="box-footer">
