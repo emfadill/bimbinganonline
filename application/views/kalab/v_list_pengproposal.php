@@ -60,9 +60,6 @@
               <div class="tab-content">
                 <div class="tab-pane active" id="tab_1">
 	          <div class="box">
-	          	   <div class="box-tools pull-right">
-                  <a href="<?php echo base_url(); ?>c_kalab/exportxlspta" class="btn btn-box-tool ">AMBIL DATA EXCEL</a>
-                </div>
 	            <div class="box-body">
 	              <table id="example1" class="table table-bordered table-striped">
 	                <thead>
@@ -91,11 +88,11 @@
 		                  	<center>
 		                  		<?php if ($ta->status == "Tunggu") { ?>
 		                  		
-		                  			<a href="<?php echo base_url().'c_kalab/reviewta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
-		                  			</a> | 
-		                  			<a href="<?php echo base_url().'c_kalab/aformta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-share"></i></a>
+		                  			<a class="btn btn-xs bg-navy " href="<?php echo base_url().'c_kalab/reviewta/'.$ta->id; ?>" data-toggle="tooltip" data-placement="bottom" title="Review"> <i class="glyphicon glyphicon-pencil"></i>
+		                  			</a>
+		                  			<a class="btn btn-xs btn-info margin" href="<?php echo base_url().'c_kalab/aformta/'.$ta->id; ?>" data-toggle="tooltip" data-placement="bottom" title="Tunjuk Dosen (Reviewer)"> <i class="glyphicon glyphicon-share"></i></a>
 		                  		<?php } else{ ?>
-		                  			<a href="<?php echo base_url().'c_kalab/viewpta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
+		                  			<a class="btn btn-xs bg-olive margin" href="<?php echo base_url().'c_kalab/viewpta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
 		                  		<?php } ?>
 		                  	</center>
 		                  </td>
@@ -138,11 +135,11 @@
 		                  	<center>
 		                  		<?php if ($ta_r->status == "Tunggu") { ?>
 		                  		
-		                  			<a href="<?php echo base_url().'c_kalab/reviewta/'.$ta_r->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
-		                  			</a> | 
-		                  			<a href="<?php echo base_url().'c_kalab/aformta/'.$ta_r->id; ?>"> <i class="glyphicon glyphicon-share"></i></a>
+		                  			<a class="btn btn-xs bg-navy margin" href="<?php echo base_url().'c_kalab/reviewta/'.$ta_r->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
+		                  			</a>  
+		                  			<a class="btn btn-xs btn-info margin" href="<?php echo base_url().'c_kalab/aformta/'.$ta_r->id; ?>"> <i class="glyphicon glyphicon-share"></i></a>
 		                  		<?php } else{ ?>
-		                  			<a href="<?php echo base_url().'c_kalab/viewpta/'.$ta_r->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
+		                  			<a class="btn btn-xs bg-olive margin" href="<?php echo base_url().'c_kalab/viewpta/'.$ta_r->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
 		                  		<?php } ?>
 		                  	</center>
 		                  </td>
@@ -188,11 +185,11 @@
 		                  	<center>
 		                  		<?php if ($ta_dt->status == "Tunggu") { ?>
 		                  		
-		                  			<a href="<?php echo base_url().'c_kalab/reviewta/'.$ta_dt->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
+		                  			<a class="btn btn-xs bg-navy margin" href="<?php echo base_url().'c_kalab/reviewta/'.$ta_dt->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
 		                  			</a> | 
-		                  			<a href="<?php echo base_url().'c_kalab/aformta/'.$ta_dt->id; ?>"> <i class="glyphicon glyphicon-share"></i></a>
+		                  			<a class="btn btn-xs btn-info margin" href="<?php echo base_url().'c_kalab/aformta/'.$ta_dt->id; ?>"> <i class="glyphicon glyphicon-share"></i></a>
 		                  		<?php } else{ ?>
-		                  			<a href="<?php echo base_url().'c_kalab/viewpta/'.$ta_dt->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
+		                  			<a class="btn btn-xs bg-olive margin" href="<?php echo base_url().'c_kalab/viewpta/'.$ta_dt->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
 		                  		<?php } ?>
 		                  	</center>
 		                  </td>

@@ -783,6 +783,7 @@ class C_Kalab extends CI_Controller
 
 	}
 
+
 	function exportxlsptasort(){
 		
 
@@ -886,6 +887,8 @@ class C_Kalab extends CI_Controller
 
 		$data = $this->m_model->ambil_where($where,'t_pengajuanproposal');
 
+		
+
 		$no = 1;
 		$numrow = 2; // Set baris pertama untuk isi tabel adalah baris ke 2
 		foreach($data->result() as $ta){ // Lakukan looping pada variabel siswa
@@ -906,7 +909,7 @@ class C_Kalab extends CI_Controller
 			$excel->setActiveSheetIndex(0)->setCellValue('M'.$numrow, $ta->r_batasan);
 			$excel->setActiveSheetIndex(0)->setCellValue('N'.$numrow, $ta->metodologi_penelitian);
 			$excel->setActiveSheetIndex(0)->setCellValue('O'.$numrow, $ta->r_metodologi);
-			$excel->setActiveSheetIndex(0)->setCellValue('P'.$numrow, $ta->Landasan);
+			$excel->setActiveSheetIndex(0)->setCellValue('P'.$numrow, $ta->landasan_teori_alur_kerja);
 			$excel->setActiveSheetIndex(0)->setCellValue('Q'.$numrow, $ta->r_landasan);
 			$excel->setActiveSheetIndex(0)->setCellValue('R'.$numrow, $ta->tahun_akademik_diterima);
 			$excel->setActiveSheetIndex(0)->setCellValue('S'.$numrow, $ta->semester_diterima);
@@ -983,13 +986,136 @@ class C_Kalab extends CI_Controller
 
 		// Proses file excel
 		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		header('Content-Disposition: attachment; filename="List Proposal Tugas Akhir Terbaru sort.xlsx"'); // Set nama file excel nya
+		header('Content-Disposition: attachment; filename="List Proposal Tugas Akhir Terbaru '.$semester_diterima.'-'.$tahun_akademik_diterima.' sort.xlsx"'); // Set nama file excel nya
 		header('Cache-Control: max-age=0');
 
 		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
 		$write->save('php://output');
 
 		redirect('kalab/listpengajuanproposal');
+
+	}
+
+	function ContohExcel(){
+		
+
+		include APPPATH.'third_party/PHPExcel/PHPExcel.php';
+		
+		// Panggil class PHPExcel nya
+		$excel = new PHPExcel();
+
+		// Settingan awal fil excel
+		$excel->getProperties()->setCreator('Pembuat')
+							   ->setLastModifiedBy('Pembuat')
+							   ->setTitle("Title")
+							   ->setSubject("Subject")
+							   ->setDescription("Deskripsi")
+							   ->setKeywords("Data Tugas Akhir");
+
+		// Buat sebuah variabel untuk menampung pengaturan style dari header tabel
+		$style_col = array(
+			'font' => array('bold' => true), // Set font nya jadi bold
+			'alignment' => array(
+				'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+			),
+			'borders' => array(
+				'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+				'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+				'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+				'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+			)
+		);
+
+		// Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
+		$style_row = array(
+			'alignment' => array(
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+			),
+			'borders' => array(
+				'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+				'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+				'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+				'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+			)
+		);
+
+
+		// Buat header tabel nya pada kolom 4
+
+		$excel->setActiveSheetIndex(0)->setCellValue('A1', "No"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('B1', "Nama Mahasiswa"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('C1', "NPM/NIM"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('D1', "Konsentrasi");
+		$excel->setActiveSheetIndex(0)->setCellValue('E1', "Topik Tugas Akhir"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('F1', "Latar Belakang");
+		$excel->setActiveSheetIndex(0)->setCellValue('G1', "Revisi Latar Belakang");
+		$excel->setActiveSheetIndex(0)->setCellValue('H1', "Rumusan Masalah");
+		$excel->setActiveSheetIndex(0)->setCellValue('I1', "Revisi Rumusan Masalah");
+		$excel->setActiveSheetIndex(0)->setCellValue('J1', "Tujuan");
+		$excel->setActiveSheetIndex(0)->setCellValue('K1', "Revisi Tujuan");
+		$excel->setActiveSheetIndex(0)->setCellValue('L1', "Batasan Masalah");
+		$excel->setActiveSheetIndex(0)->setCellValue('M1', "Revisi Batasan Masalah");
+		$excel->setActiveSheetIndex(0)->setCellValue('N1', "Metodologi Penelitian");
+		$excel->setActiveSheetIndex(0)->setCellValue('O1', "Revisi Metodologi Penelitian");
+		$excel->setActiveSheetIndex(0)->setCellValue('P1', "Landasan Teori dan Alur Kerja");
+		$excel->setActiveSheetIndex(0)->setCellValue('Q1', "Revisi Landasan");
+		$excel->setActiveSheetIndex(0)->setCellValue('R1', "Tahun Akademik Diterima");
+		$excel->setActiveSheetIndex(0)->setCellValue('S1', "Semester");
+		$excel->setActiveSheetIndex(0)->setCellValue('T1', "Status"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('U1', "NID Dosen Reviewer"); 
+		$excel->setActiveSheetIndex(0)->setCellValue('V1', "Dosen Reviewer");
+		$excel->setActiveSheetIndex(0)->setCellValue('W1', "No ID");
+		
+
+		
+
+		$data = $this->m_model->ambil_data('t_pengajuanproposal');
+
+		$no = 1;
+		$numrow = 2; // Set baris pertama untuk isi tabel adalah baris ke 2
+		foreach($data->result() as $ta){
+
+			$excel->setActiveSheetIndex(0)->setCellValue('A'.$numrow, $no);
+			$excel->setActiveSheetIndex(0)->setCellValue('B'.$numrow, $ta->nama_mahasiswa);
+			$excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $ta->npm);
+			$excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $ta->konsentrasi);
+			$excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $ta->topik_ta);
+			$excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $ta->latar_belakang);
+			$excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, $ta->r_latar);
+			$excel->setActiveSheetIndex(0)->setCellValue('H'.$numrow, $ta->rumusan_masalah);
+			$excel->setActiveSheetIndex(0)->setCellValue('I'.$numrow, $ta->r_rumusan);
+			$excel->setActiveSheetIndex(0)->setCellValue('J'.$numrow, $ta->tujuan);
+			$excel->setActiveSheetIndex(0)->setCellValue('K'.$numrow, $ta->r_tujuan);
+			$excel->setActiveSheetIndex(0)->setCellValue('L'.$numrow, $ta->batasan_masalah);
+			$excel->setActiveSheetIndex(0)->setCellValue('M'.$numrow, $ta->r_batasan);
+			$excel->setActiveSheetIndex(0)->setCellValue('N'.$numrow, $ta->metodologi_penelitian);
+			$excel->setActiveSheetIndex(0)->setCellValue('O'.$numrow, $ta->r_metodologi);
+			$excel->setActiveSheetIndex(0)->setCellValue('P'.$numrow, $ta->landasan_teori_alur_kerja);
+			$excel->setActiveSheetIndex(0)->setCellValue('Q'.$numrow, $ta->r_landasan);
+			
+			
+
+		}
+		
+		
+		// Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
+		$excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+
+		// Set orientasi kertas jadi LANDSCAPE
+		$excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+
+		// Set judul file excel nya
+		$excel->getActiveSheet(0)->setTitle("Test");
+		$excel->setActiveSheetIndex(0);
+
+		// Proses file excel
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment; filename="Sample Excel.xlsx"'); // Set nama file excel nya
+		header('Cache-Control: max-age=0');
+
+		$write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+		$write->save('php://output');
 
 	}
 

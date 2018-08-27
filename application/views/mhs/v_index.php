@@ -46,7 +46,7 @@
                         <td><?php echo $ta->status; ?></td>
                         <td>
                         <center>
-                            <a href="<?php echo base_url().'c_mhs/viewppro/'.$ta->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
+                            <a class="btn btn-xs bg-olive margin" href="<?php echo base_url().'c_mhs/viewppro/'.$ta->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
                           <!-- <a onclick="return confirm('Apa anda ingin menghapus data pengajuan id=<?php echo $ta->id; ?> ini ');" href="<?php echo base_url().'c_mhs/hapuspro/'.$ta->id.'/'.$ta->$landasan_teori_alur_kerja ?>"> <i class="glyphicon glyphicon-trash"></i></a> -->
                         </center>
                       </td>

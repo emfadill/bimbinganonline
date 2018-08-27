@@ -8,9 +8,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Daftar Pengajuan Proposal Tugas Akhir</h3>
-              <div class="box-tools pull-right">
-                  <a href="<?php echo base_url(); ?>c_dosen/exportxlsta" class="btn btn-box-tool ">AMBIL DATA EXCEL</a>
-                </div>
+              
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -50,10 +48,10 @@
                       <td>
                         <center>
                           <?php if ($ta->status == "Tunggu") { ?>
-                            <a href="<?php echo base_url().'c_dosen/reviewta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
+                            <a class="btn btn-xs bg-navy margin" href="<?php echo base_url().'c_dosen/reviewta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-pencil"></i>
                             </a>
                           <?php } else{ ?>
-                            <a href="<?php echo base_url().'c_dosen/viewpta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
+                            <a class="btn btn-xs bg-olive margin" href="<?php echo base_url().'c_dosen/viewpta/'.$ta->id; ?>"> <i class="glyphicon glyphicon-search"></i></a>
                           <?php } ?>
                         </center>
                       </td>
