@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
+    <link rel="icon" type="image/png" href="<?php echo base_url(); ?>asset/Utama.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="<?php echo base_url(); ?>asset/Utama.png" sizes="32x32">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>bootstrap/css/bootstrap.min.css">
@@ -33,6 +35,7 @@
   <div class="login-box-body">
     <p class="login-box-msg"><?php if (isset($pesan)) {echo $pesan;} ?></p>
 
+    <?=$this->session->flashdata('notif')?>
     <?php echo form_open('proseslogin'); ?>
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Username" name="username" required>

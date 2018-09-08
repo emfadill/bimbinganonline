@@ -40,7 +40,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="<?php echo base_url(); ?>kalab" class="logo">
+    <a href="<?php echo base_url(); ?>dosen" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><img src="<?php echo base_url(); ?>asset/Utama-W.png" width="50%" height="50%"></span>
       <!-- logo for regular state and mobile devices -->

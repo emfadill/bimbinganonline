@@ -22,6 +22,7 @@
 
   <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/select2/select2.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>dist/sweetalert.css">
 
   <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/Utama.png" sizes="16x16">
   <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/Utama.png" sizes="32x32">

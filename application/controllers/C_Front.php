@@ -160,6 +160,7 @@ class C_Front extends CI_Controller
 			
 				if($insertUser)
 				{
+					$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert"> Anda Berhasil Daftar! Silahkan login. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 					redirect('C_Front');
 				}
 				else
@@ -223,6 +224,7 @@ class C_Front extends CI_Controller
 			
 				if($insertUser)
 				{
+					$this->session->set_flashdata('notif','<div class="alert alert-success" role="alert"> Anda Berhasil Daftar! Silahkan login. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
 					redirect('C_Front');
 				}
 				else

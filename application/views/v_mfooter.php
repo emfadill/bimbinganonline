@@ -15,6 +15,9 @@
 <script src="<?php echo base_url(); ?>plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>dist/js/app.min.js"></script>
+<!-- SweetAlert -->
+<script src="<?php echo base_url(); ?>dist/sweetalert.min.js"></script>
+<script src="<?php echo base_url(); ?>dist/sweetalert.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>dist/js/demo.js"></script>
 <!-- page script -->

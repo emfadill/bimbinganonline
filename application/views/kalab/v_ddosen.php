@@ -55,7 +55,7 @@
             $jenis_bimbingan=$i->jenis_bimbingan;
         ?>
 
-   <!-- ============ MODAL HAPUS BARANG =============== -->
+   <!-- ============ MODAL HAPUS DOSEN =============== -->
         <div class="modal fade" id="modal_hapus<?php echo $id_dosen;?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
@@ -77,7 +77,7 @@
             </div>
         </div>
     <?php }?>
-    <!--END MODAL HAPUS BARANG--> 
+    <!--END MODAL HAPUS DOSEN--> 
       <!-- /.row -->
     </section>
     <!-- /.content -->

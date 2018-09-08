@@ -39,7 +39,7 @@ class C_Kalab extends CI_Controller
 		);
 
 		$data1['hitungpta1'] = $this->m_model->hitung($where,'t_pengajuanproposal');
-		$data1['hitungptan2'] = $this->m_model->hitung_all('t_datata') - $data1['hitungpta1'];
+		$data1['hitungptan2'] = $this->m_model->hitung_all('t_pengajuanproposal');
 		$data1['hitungpta2'] = $this->m_model->hitung($where_r,'t_pengajuanproposal');
 		$data1['hitungpta3'] = $this->m_model->hitung($where_dt,'t_pengajuanproposal');
 		$data1['datata'] = $this->m_model->ambil_data_stat('t_pengajuanproposal',$where)->result();

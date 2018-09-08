@@ -17,12 +17,13 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3><?php echo $hitungpta3; ?></h3>
+              <h3><?php echo $hitungptan2; ?></h3>
 
-              <p>Data Proposal Diterima</p>
+              <p>Jumlah Data Proposal <br>
+              Masuk</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-edit"></i>
             </div>
             
           </div>
@@ -32,12 +33,12 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3><?php echo $hitungpta3; ?></h3>
 
-              <p>Bounce Rate</p>
+              <p>Data Proposal Diterima<br></p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-edit"></i>
             </div>
             
           </div>
@@ -49,10 +50,10 @@
             <div class="inner">
                <h3><?php echo $hitungpta1; ?></h3>
 
-              <p>Data Proposal Tunggu</p>
+              <p>Data Proposal Tunggu <br></p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="ion ion-edit"></i>
             </div>
             
           </div>
@@ -64,10 +65,10 @@
             <div class="inner">
                <h3><?php echo $hitungpta2; ?></h3>
 
-              <p>Data Proposal Revisi</p>
+              <p>Data Proposal Revisi <br></p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="ion ion-edit"></i>
             </div>
             
           </div>
