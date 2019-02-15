@@ -36,24 +36,14 @@
                     <td>Jenis Bimbingan</td>
                     <td>
                       <div class="form-group">
-                        <div class="radio">
-                          <label>
-                            <input name="jenis_bimbingan" id="optionsRadios1" value="Kerja Praktek" type="radio" <?php if ($dosen->jenis_bimbingan=='Kerja Praktek'){echo "checked";} ?>>
-                            Kerja Praktek
-                          </label>
-                        </div>
+                        
                         <div class="radio">
                           <label>
                             <input name="jenis_bimbingan" id="optionsRadios2" value="Tugas Akhir" type="radio" <?php if ($dosen->jenis_bimbingan=='Tugas Akhir'){echo "checked";} ?>>
                             Tugas Akhir
                           </label>
                         </div>
-                        <div class="radio">
-                          <label>
-                            <input name="jenis_bimbingan" id="optionsRadios3" value="Both" type="radio" <?php if ($dosen->jenis_bimbingan=='Both'){echo "checked";} ?>>
-                            Kerja Pratek/ Tugas Akhir
-                          </label>
-                        </div>
+                        
                       </div>                      
                     </td>
                   </tr>

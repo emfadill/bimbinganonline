@@ -40,6 +40,7 @@
 <script src="<?php echo base_url(); ?>bower_components/Flot/jquery.flot.pie.js"></script>
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="<?php echo base_url(); ?>bower_components/Flot/jquery.flot.categories.js"></script>
+
 <!-- page script -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="<?php echo base_url(); ?>plugins/datepicker/bootstrap-datepicker.js"></script>
